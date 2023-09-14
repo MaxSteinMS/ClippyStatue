@@ -1,0 +1,51 @@
+#include <Servo.h>
+Servo leftEye;  
+Servo leftEyebrow;  
+Servo rightEyebrow;
+Servo rightEye;
+
+int pos = 0;
+
+void setup() {
+  leftEye.attach(2);  // attaches the servo on pin 2
+  leftEyebrow.attach(3);  // attaches the servo on pin 3
+  rightEyebrow.attach(4);  // attaches the servo on pin 4
+  rightEye.attach(5);  // attaches the servo on pin 5
+
+  leftEye.write(0);
+  leftEyebrow.write(0);
+  rightEyebrow.write(0);
+  rightEye.write(0);
+}
+
+void loop() {
+
+  //eyes
+  for (pos = 0; pos <= 180; pos += 1) {  // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    leftEye.write(pos);
+    rightEye.write(pos);
+    delay(15);  
+  }
+  // eyebrows
+  for (pos = 0; pos <= 15; pos += 1) {  // goes from 0 degrees to 15 degrees
+    // in steps of 1 degree
+
+    leftEyebrow.write(pos);
+    rightEyebrow.write(pos);  
+    delay(15);          
+  }
+  // eyes
+  for (pos = 180; pos >= 0; pos -= 1) {  // goes from 180 degrees to 0 degrees
+    leftEye.write(pos);
+    rightEye.write(pos);  
+    delay(15);          
+  }
+
+  //eyebrows
+  for (pos = 15; pos >= 0; pos -= 1) {  // goes from 15 degrees to 0 degrees
+    leftEyebrow.write(pos);
+    rightEyebrow.write(pos);  
+    delay(15);          // waits 15ms for the servo to reach the position
+  }
+}
